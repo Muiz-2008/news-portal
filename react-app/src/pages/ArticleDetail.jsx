@@ -1,6 +1,3 @@
-// ArticleDetail.jsx — full article view
-// Demonstrates: useLocation (read navigation state), useNews (related articles)
-
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { useNews } from '../hooks/useNews'
 import NewsCard    from '../components/NewsCard'
@@ -15,23 +12,21 @@ function timeAgo(dateStr) {
 }
 
 export default function ArticleDetail() {
-  const { state }  = useLocation() // retrieve the article object passed via Link state
-  const navigate   = useNavigate()
-  const article    = state?.article
+  const { state } = useLocation()
+  const navigate  = useNavigate()
+  const article   = state?.article
 
-  // Fetch related articles from the same category (excluding current)
   const { articles: related } = useNews({
     category: article?.category || 'general',
     max: 4,
   })
 
-  // If we somehow land here without an article (e.g. direct URL), go home
   if (!article) {
     return (
       <main className="page">
         <div className="container article-not-found">
           <h2>Article not found.</h2>
-          <p>We couldn&apos;t load this article.</p>
+          <p>Try heading back and clicking the article again.</p>
           <Link to="/" className="btn btn-primary" style={{ marginTop: '16px' }}>
             Back to Home
           </Link>
@@ -46,12 +41,10 @@ export default function ArticleDetail() {
     <main className="page">
       <div className="container article-container">
 
-        {/* Back button */}
         <button className="back-btn" onClick={() => navigate(-1)}>
           &larr; Back
         </button>
 
-        {/* Article header */}
         <header className="article-header">
           <span className={`badge badge-${article.category || 'general'}`}>
             {article.category?.charAt(0).toUpperCase() + article.category?.slice(1) || 'News'}
@@ -67,19 +60,14 @@ export default function ArticleDetail() {
           </div>
         </header>
 
-        {/* Hero image */}
         <img src={article.image} alt={article.title} className="article-image" />
 
-        {/* Article body — content split into paragraphs */}
         <div className="article-body">
           {(article.content || article.description)
             .split('\n\n')
-            .map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
+            .map((para, i) => <p key={i}>{para}</p>)}
         </div>
 
-        {/* External link (if from live API) */}
         {article.url && article.url !== '#' && (
           <a
             href={article.url}
@@ -88,14 +76,13 @@ export default function ArticleDetail() {
             className="btn btn-outline"
             style={{ marginTop: '32px', display: 'inline-block' }}
           >
-            Read Original Article &#8599;
+            Read full article &#8599;
           </a>
         )}
 
-        {/* Related articles */}
         {relatedArticles.length > 0 && (
           <section className="related-section">
-            <h2 className="section-title">Related Stories</h2>
+            <h2 className="section-title">More Stories</h2>
             <div className="cards-grid">
               {relatedArticles.map((a) => (
                 <NewsCard key={a.id} article={a} size="lg" />

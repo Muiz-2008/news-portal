@@ -1,7 +1,3 @@
-// Navbar.jsx — top navigation bar
-// Uses: useState (hamburger toggle), NavLink (active link highlighting),
-//       useNavigate (redirect to search page on form submit)
-
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 

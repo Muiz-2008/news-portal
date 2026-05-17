@@ -39,7 +39,7 @@ body {
   font-family: var(--font);
   font-size: 15px;
   color: var(--text);
-  background: var(--light);
+  background: #ffffff;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -206,9 +206,7 @@ button, input, textarea, select { font-family: var(--font); font-size: inherit; 
 
 /* 6. NAVBAR */
 .header {
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: #ffffff;
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
@@ -509,56 +507,7 @@ button, input, textarea, select { font-family: var(--font); font-size: inherit; 
 .error-title   { font-size: 20px; font-weight: 700; }
 .error-message { color: var(--muted); font-size: 15px; }
 
-/* 12. NEWSLETTER */
-.newsletter {
-  background: linear-gradient(135deg, #0d1117 0%, #1c2331 100%);
-  color: var(--white);
-  padding: 72px 24px;
-  margin-top: 48px;
-  position: relative;
-  overflow: hidden;
-}
-.newsletter::before {
-  content: '';
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 320px; height: 320px;
-  background: radial-gradient(circle, rgba(230,57,70,0.14) 0%, transparent 70%);
-  pointer-events: none;
-}
-.newsletter-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
-  position: relative;
-}
-.newsletter-text h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
-.newsletter-text p  { color: #9ca3af; font-size: 15px; }
-.newsletter-form {
-  display: flex;
-  flex-shrink: 0;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-.newsletter-form input {
-  width: 290px;
-  padding: 14px 18px;
-  border: none;
-  font-size: 14px;
-  outline: none;
-  background: rgba(255,255,255,0.09);
-  color: var(--white);
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
-.newsletter-form input::placeholder { color: rgba(255,255,255,0.38); }
-.newsletter-form input:focus { background: rgba(255,255,255,0.13); }
-.newsletter-form .btn { border-radius: 0; padding: 14px 24px; }
-.newsletter-success { color: #86efac; font-weight: 600; font-size: 15px; }
-
-/* 13. ARTICLE DETAIL */
+/* 12. ARTICLE DETAIL */
 .article-container { max-width: 780px; margin: 0 auto; padding-top: 40px; padding-bottom: 72px; }
 .back-btn {
   display: inline-flex;
@@ -631,21 +580,11 @@ button, input, textarea, select { font-family: var(--font); font-size: inherit; 
 
 /* 16. ABOUT PAGE */
 .about-hero {
-  background: linear-gradient(135deg, var(--dark) 0%, #1c2331 100%);
+  background: #0d1117;
   color: var(--white);
   padding: 88px 24px;
-  position: relative;
-  overflow: hidden;
 }
-.about-hero::after {
-  content: '';
-  position: absolute;
-  bottom: -80px; right: -80px;
-  width: 360px; height: 360px;
-  background: radial-gradient(circle, rgba(230,57,70,0.11) 0%, transparent 70%);
-  pointer-events: none;
-}
-.about-hero-inner { max-width: 680px; position: relative; }
+.about-hero-inner { max-width: 680px; }
 .about-hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; margin-bottom: 18px; letter-spacing: -1px; }
 .about-hero p  { font-size: 18px; color: #d1d5db; line-height: 1.75; }
 
@@ -763,7 +702,7 @@ button, input, textarea, select { font-family: var(--font); font-size: inherit; 
 .success-icon {
   width: 80px; height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #16a34a, #15803d);
+  background: #16a34a;
   color: var(--white);
   font-size: 38px;
   display: flex;
@@ -793,7 +732,7 @@ button, input, textarea, select { font-family: var(--font); font-size: inherit; 
 .footer { background: var(--mid); color: #9ca3af; }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 48px;
   padding: 64px 24px 48px;
 }
@@ -846,18 +785,8 @@ button, input, textarea, select { font-family: var(--font); font-size: inherit; 
   .about-mission { grid-template-columns: 1fr; }
   .about-stats   { grid-template-columns: repeat(2, 1fr); }
   .team-grid     { grid-template-columns: repeat(2, 1fr); }
-  .newsletter-inner { flex-direction: column; text-align: center; }
-  .newsletter-form {
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  .newsletter-form input { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .newsletter-form .btn { border-radius: 0; }
   .contact-container { grid-template-columns: 1fr; gap: 40px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-brand { grid-column: 1 / -1; }
   .hero { height: 440px; }
   .hero-content { padding: 32px 36px; }
   .skeleton-grid { grid-template-columns: repeat(2, 1fr); }

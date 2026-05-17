@@ -1,10 +1,5 @@
-// Contact.jsx — contact form page
-// Demonstrates: useState for form fields, form validation, controlled inputs,
-//               conditional rendering (form → success message)
-
 import { useState } from 'react'
 
-// Initial empty form state
 const INITIAL_FORM = {
   name:    '',
   email:   '',
@@ -22,13 +17,9 @@ export default function Contact() {
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
-    // Clear the error for this field as the user corrects it
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }))
-    }
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }))
   }
 
-  // Simple validation — returns an errors object (empty if all valid)
   const validate = () => {
     const e = {}
     if (!form.name.trim())              e.name    = 'Name is required.'
@@ -45,17 +36,15 @@ export default function Contact() {
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
-      return // stop here — don't submit
+      return
     }
 
-    // Simulate a network request
     setLoading(true)
     await new Promise((resolve) => setTimeout(resolve, 1000))
     setLoading(false)
     setSubmitted(true)
   }
 
-  // Show a thank-you screen after successful submission
   if (submitted) {
     return (
       <main className="page">
@@ -79,34 +68,31 @@ export default function Contact() {
     <main className="page">
       <div className="container contact-container">
 
-        {/* Left side — contact info */}
         <div className="contact-info">
-          <h1 className="page-title">Get in Touch</h1>
+          <h1 className="page-title">Contact Us</h1>
           <p className="contact-intro">
-            Have a news tip, correction, or feedback? We read every message and
-            respond to as many as we can.
+            Got a tip, spotted an error, or just want to say something?
+            We read every message, though we can&apos;t always reply individually.
           </p>
           <ul className="contact-details">
             <li>
               <span className="contact-icon">&#9993;</span>
-              <span>newsdesk@newshub.com</span>
+              <span>tips@newshub.com</span>
+            </li>
+            <li>
+              <span className="contact-icon">&#9993;</span>
+              <span>corrections@newshub.com</span>
             </li>
             <li>
               <span className="contact-icon">&#128222;</span>
-              <span>+1 (212) 555-0147</span>
-            </li>
-            <li>
-              <span className="contact-icon">&#128205;</span>
-              <span>350 Fifth Avenue, New York, NY 10118</span>
+              <span>+1 (646) 555-0192</span>
             </li>
           </ul>
         </div>
 
-        {/* Right side — form */}
         <form className="contact-form" onSubmit={handleSubmit} noValidate>
           <h2>Send a Message</h2>
 
-          {/* Name */}
           <div className={`form-group ${errors.name ? 'has-error' : ''}`}>
             <label htmlFor="name">Your Name</label>
             <input
@@ -120,7 +106,6 @@ export default function Contact() {
             {errors.name && <span className="form-error">{errors.name}</span>}
           </div>
 
-          {/* Email */}
           <div className={`form-group ${errors.email ? 'has-error' : ''}`}>
             <label htmlFor="email">Email Address</label>
             <input
@@ -134,7 +119,6 @@ export default function Contact() {
             {errors.email && <span className="form-error">{errors.email}</span>}
           </div>
 
-          {/* Subject */}
           <div className={`form-group ${errors.subject ? 'has-error' : ''}`}>
             <label htmlFor="subject">Subject</label>
             <select
@@ -153,7 +137,6 @@ export default function Contact() {
             {errors.subject && <span className="form-error">{errors.subject}</span>}
           </div>
 
-          {/* Message */}
           <div className={`form-group ${errors.message ? 'has-error' : ''}`}>
             <label htmlFor="message">Message</label>
             <textarea

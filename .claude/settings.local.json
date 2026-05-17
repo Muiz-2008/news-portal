@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(& \"C:\\\\Users\\\\User\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\bin\\\\code.cmd\" \"C:\\\\Users\\\\User\\\\OneDrive\\\\Desktop\\\\News portal\")"
-    ]
-  }
-}

@@ -71,27 +71,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Advertise</a></li>
-            <li><a href="#">Ethics Policy</a></li>
-          </ul>
-        </div>
-
-        <div className="footer-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Cookie Settings</a></li>
-            <li><a href="#">Accessibility</a></li>
-          </ul>
-        </div>
-
       </div>
 
       <div className="footer-bottom">

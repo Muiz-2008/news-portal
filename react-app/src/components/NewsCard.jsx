@@ -1,11 +1,3 @@
-// NewsCard.jsx — reusable card component for displaying a single article
-//
-// Props:
-//   article  — the article object (title, description, image, etc.)
-//   size     — 'sm' (default) or 'lg' (taller image, bigger text)
-//
-// "Props" are like arguments you pass into a component from the parent.
-
 import { Link } from 'react-router-dom'
 
 function timeAgo(dateStr) {
