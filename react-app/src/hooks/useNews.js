@@ -25,7 +25,7 @@ export function useNews({ category = 'general', query = '', max = 9 } = {}) {
     setError(null)
 
     const load = async () => {
-      const apiKey = import.meta.env.VITE_NEWS_API_KEY
+      const apiKey = import.meta.env.VITE_NEWS_API_KEY || 'b7b75cceecdd85b2f7a2f03bcbf4e580'
 
       if (apiKey) {
         try {
