@@ -70,12 +70,7 @@ export default function Navbar() {
                 </NavLink>
               </li>
             ))}
-            <li>
-              <NavLink to="/about" onClick={() => setMenuOpen(false)}>About</NavLink>
-            </li>
-            <li>
-              <NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink>
-            </li>
+
           </ul>
 
           {/* Search form */}
