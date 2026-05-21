@@ -30,24 +30,23 @@ export function useNews({ category = 'general', query = '', max = 9 } = {}) {
       if (apiKey) {
         try {
           const endpoint = query
-            ? `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&pageSize=${max}&sortBy=publishedAt&language=en&apiKey=${apiKey}`
-            : `https://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=${max}&apiKey=${apiKey}`
+            ? `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&max=${max}&lang=en&token=${apiKey}`
+            : `https://gnews.io/api/v4/top-headlines?category=${category}&max=${max}&lang=en&token=${apiKey}`
 
           const res = await fetch(endpoint)
           if (!res.ok) throw new Error(`API error ${res.status}`)
           const data = await res.json()
-          if (data.status !== 'ok') throw new Error(data.message || 'API error')
 
           const normalised = (data.articles || [])
-            .filter(a => a.title && a.title !== '[Removed]')
+            .filter(a => a.title)
             .map((a, i) => ({
               id:          `api-${i}-${Date.now()}`,
               title:       a.title,
               description: a.description || '',
               content:     a.content || a.description || '',
-              author:      a.author || a.source?.name || 'News Desk',
+              author:      a.source?.name || 'News Desk',
               publishedAt: a.publishedAt,
-              image:       a.urlToImage || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
+              image:       a.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
               category,
               source:      a.source,
               url:         a.url,
@@ -57,7 +56,7 @@ export function useNews({ category = 'general', query = '', max = 9 } = {}) {
           setLoading(false)
           return
         } catch (err) {
-          console.warn('NewsAPI unavailable, using local data:', err.message)
+          console.warn('GNews unavailable, using local data:', err.message)
         }
       }
 
