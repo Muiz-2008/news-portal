@@ -45,8 +45,7 @@ export default function NewsCard({ article, size = 'sm' }) {
           alt={article.title}
           className="card-image"
           onError={(e) => {
-            // If image fails to load, show a placeholder colour
-            e.target.style.display = 'none'
+            e.target.src = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'
           }}
         />
         <span className={`badge ${badgeClass[article.category] || 'badge-general'} card-badge`}>
