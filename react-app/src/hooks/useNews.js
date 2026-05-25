@@ -25,42 +25,49 @@ export function useNews({ category = 'general', query = '', max = 9 } = {}) {
     setError(null)
 
     const load = async () => {
-      const apiKey = import.meta.env.VITE_NEWS_API_KEY || 'b7b75cceecdd85b2f7a2f03bcbf4e580'
+      try {
+        let endpoint
 
-      if (apiKey) {
-        try {
-          const endpoint = query
-            ? `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&max=${max}&lang=en&token=${apiKey}`
-            : `https://gnews.io/api/v4/top-headlines?category=${category}&max=${max}&lang=en&token=${apiKey}`
-
-          const res = await fetch(endpoint)
-          if (!res.ok) throw new Error(`API error ${res.status}`)
-          const data = await res.json()
-
-          const normalised = (data.articles || [])
-            .filter(a => a.title)
-            .map((a, i) => ({
-              id:          `api-${i}-${Date.now()}`,
-              title:       a.title,
-              description: a.description || '',
-              content:     a.content || a.description || '',
-              author:      a.source?.name || 'News Desk',
-              publishedAt: a.publishedAt,
-              image:       a.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
-              category,
-              source:      a.source,
-              url:         a.url,
-            }))
-
-          setArticles(normalised)
-          setLoading(false)
-          return
-        } catch (err) {
-          console.warn('GNews unavailable, using local data:', err.message)
+        if (import.meta.env.PROD) {
+          // Production: call the Vercel serverless proxy (no CORS issues)
+          const params = new URLSearchParams({ category, max: String(max) })
+          if (query) params.set('q', query)
+          endpoint = `/api/news?${params}`
+        } else {
+          // Development: call GNews directly from the browser
+          const key = import.meta.env.VITE_NEWS_API_KEY || 'b7b75cceecdd85b2f7a2f03bcbf4e580'
+          endpoint = query
+            ? `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&max=${max}&lang=en&token=${key}`
+            : `https://gnews.io/api/v4/top-headlines?category=${category}&max=${max}&lang=en&token=${key}`
         }
+
+        const res = await fetch(endpoint)
+        if (!res.ok) throw new Error(`status ${res.status}`)
+        const data = await res.json()
+
+        const normalised = (data.articles || [])
+          .filter(a => a.title && a.title !== '[Removed]')
+          .map((a, i) => ({
+            id:          `api-${i}-${Date.now()}`,
+            title:       a.title,
+            description: a.description || '',
+            content:     a.content || a.description || '',
+            author:      a.author || a.source?.name || 'News Desk',
+            publishedAt: a.publishedAt,
+            image:       a.image || a.urlToImage || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
+            category,
+            source:      a.source,
+            url:         a.url,
+          }))
+
+        setArticles(normalised)
+        setLoading(false)
+        return
+      } catch (err) {
+        console.warn('News fetch failed, using local data:', err.message)
       }
 
-      await new Promise(resolve => setTimeout(resolve, 500))
+      await new Promise(resolve => setTimeout(resolve, 400))
       setArticles(filterLocal(localArticles, category, query, max))
       setLoading(false)
     }
