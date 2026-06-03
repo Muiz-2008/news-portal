@@ -10,6 +10,7 @@ import About         from './pages/About'
 import Contact       from './pages/Contact'
 import Services      from './pages/Services'
 import Login         from './pages/Login'
+import Register      from './pages/Register'
 import NotFound      from './pages/NotFound'
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/contact"        element={<Contact />} />
         <Route path="/services"       element={<Services />} />
         <Route path="/login"          element={<Login />} />
+        <Route path="/register"       element={<Register />} />
         <Route path="*"               element={<NotFound />} />
       </Routes>
       <Footer />
