@@ -14,6 +14,7 @@ import Register      from './pages/Register'
 import Dashboard     from './pages/Dashboard'
 import Profile       from './pages/Profile'
 import Settings      from './pages/Settings'
+import Admin         from './pages/Admin'
 import NotFound      from './pages/NotFound'
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/dashboard"      element={<Dashboard />} />
         <Route path="/profile"        element={<Profile />} />
         <Route path="/settings"       element={<Settings />} />
+        <Route path="/admin"          element={<Admin />} />
         <Route path="*"               element={<NotFound />} />
       </Routes>
       <Footer />
