@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 
 const CATEGORIES = [
   { label: 'Home',          path: '/' },
@@ -76,7 +76,6 @@ export default function Navbar() {
 
           </ul>
 
-          {/* Search form */}
           <form className="navbar-search" onSubmit={handleSearch}>
             <input
               type="search"
@@ -87,6 +86,10 @@ export default function Navbar() {
             />
             <button type="submit">&#128269;</button>
           </form>
+
+          <Link to="/login" className="btn btn-primary navbar-signin" onClick={() => setMenuOpen(false)}>
+            Sign In
+          </Link>
         </div>
 
       </nav>
