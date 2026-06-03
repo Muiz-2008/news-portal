@@ -12,6 +12,7 @@ import Services      from './pages/Services'
 import Login         from './pages/Login'
 import Register      from './pages/Register'
 import Dashboard     from './pages/Dashboard'
+import Profile       from './pages/Profile'
 import NotFound      from './pages/NotFound'
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/login"          element={<Login />} />
         <Route path="/register"       element={<Register />} />
         <Route path="/dashboard"      element={<Dashboard />} />
+        <Route path="/profile"        element={<Profile />} />
         <Route path="*"               element={<NotFound />} />
       </Routes>
       <Footer />

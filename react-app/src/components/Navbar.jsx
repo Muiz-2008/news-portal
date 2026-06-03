@@ -12,6 +12,7 @@ const CATEGORIES = [
   { label: 'Health',        path: '/category/health' },
   { label: 'Services',      path: '/services' },
   { label: 'Dashboard',     path: '/dashboard' },
+  { label: 'Profile',       path: '/profile' },
   { label: 'About',         path: '/about' },
   { label: 'Contact',       path: '/contact' },
 ]
