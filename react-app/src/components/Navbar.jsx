@@ -13,6 +13,7 @@ const CATEGORIES = [
   { label: 'Services',      path: '/services' },
   { label: 'Dashboard',     path: '/dashboard' },
   { label: 'Profile',       path: '/profile' },
+  { label: 'Settings',      path: '/settings' },
   { label: 'About',         path: '/about' },
   { label: 'Contact',       path: '/contact' },
 ]
