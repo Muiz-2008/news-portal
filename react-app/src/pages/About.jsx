@@ -1,39 +1,18 @@
-const TEAM = [
-  {
-    name:     'Sarah Mitchell',
-    role:     'Editor in Chief',
-    bio:      'Spent 12 years at regional papers before going digital. Still thinks the best stories come from people, not press releases.',
-    initials: 'SM',
-    color:    '#e63946',
-  },
-  {
-    name:     'James Okonkwo',
-    role:     'Technology Editor',
-    bio:      'Ex-software engineer who got tired of building things nobody understood. Writes about tech in plain language.',
-    initials: 'JO',
-    color:    '#2563eb',
-  },
-  {
-    name:     'Amina Hassan',
-    role:     'International Correspondent',
-    bio:      'Based between Nairobi and London. Covers the stories that rarely make the front page in the west.',
-    initials: 'AH',
-    color:    '#16a34a',
-  },
-  {
-    name:     'Carlos Fernandez',
-    role:     'Sports Editor',
-    bio:      'Covered three World Cups and more heartbreaks than he cares to count. Believes sports tells you everything about a society.',
-    initials: 'CF',
-    color:    '#7c3aed',
-  },
+import { Link } from 'react-router-dom'
+
+const CORE_VALUES = [
+  { icon: '🎯', title: 'Accuracy',      desc: 'Every story we publish is fact-checked and verified before it reaches our readers.' },
+  { icon: '🤝', title: 'Integrity',     desc: 'We hold ourselves to the highest journalistic standards with no hidden agendas.' },
+  { icon: '🔍', title: 'Transparency',  desc: 'We are open about our sources, methods, and corrections when we get things wrong.' },
+  { icon: '💡', title: 'Innovation',    desc: 'We combine quality journalism with modern technology to improve how news is delivered.' },
+  { icon: '🌍', title: 'Accessibility', desc: 'Quality news should be free and available to everyone, on any device, anywhere.' },
 ]
 
 const STATS = [
-  { number: '4.2M',  label: 'Monthly Readers' },
-  { number: '80+',   label: 'Countries' },
-  { number: '2019',  label: 'Founded' },
-  { number: '24/7',  label: 'Live Updates' },
+  { value: '10+',    label: 'News Categories',     icon: '📂' },
+  { value: '1,000+', label: 'Articles Accessible', icon: '📰' },
+  { value: 'Live',   label: 'Real-Time Updates',   icon: '⚡' },
+  { value: '100%',   label: 'Mobile Friendly',     icon: '📱' },
 ]
 
 export default function About() {
@@ -42,65 +21,122 @@ export default function About() {
 
       <section className="about-hero">
         <div className="container about-hero-inner">
-          <h1>About NewsHub</h1>
+          <span className="about-hero-tag">About NewsHub</span>
+          <h1>News built for the modern reader</h1>
           <p>
-            We started NewsHub because we were frustrated with news sites that
-            made it harder to read the news than to find it. Too many ads,
-            too many pop-ups, too little substance.
+            A modern digital news platform delivering accurate, timely, and engaging
+            news across technology, business, sports, entertainment, health, and world affairs.
           </p>
+          <div className="about-hero-actions">
+            <Link to="/" className="btn btn-primary">Start Reading</Link>
+            <Link to="/services" className="btn btn-ghost">View Plans</Link>
+          </div>
         </div>
       </section>
 
       <div className="container">
 
-        <section className="about-section">
-          <h2 className="section-title">How we got here</h2>
-          <div className="about-mission">
-            <p>
-              NewsHub launched in 2019 as a weekend side project. Four journalists
-              who had all worked at different outlets, all frustrated by the same
-              things — shrinking budgets, clickbait pressure, stories that got
-              killed because they weren&apos;t &quot;engaging&quot; enough.
-              The idea was simple: build a news site that respects the reader.
-            </p>
-            <p>
-              We don&apos;t have a parent company. We don&apos;t take money from
-              political campaigns. We don&apos;t publish stories we haven&apos;t
-              verified. When we get something wrong — and it happens — we correct it
-              publicly, in the article, not buried in a footnote three days later.
-              That&apos;s the whole policy.
-            </p>
+        <section className="about-intro-section">
+          <div className="about-intro-badge">Who We Are</div>
+          <p className="about-intro-text">
+            NewsHub is a modern digital news platform designed to deliver accurate, timely, and
+            engaging news coverage to readers across various categories including technology, business,
+            sports, entertainment, health, and world affairs. We believe that staying informed
+            should be simple, reliable, and accessible to everyone.
+          </p>
+        </section>
+
+        <section className="about-mv-section">
+          <div className="about-mv-grid">
+
+            <div className="about-mv-card about-mv-card--mission">
+              <div className="about-mv-icon">🎯</div>
+              <h2 className="about-mv-title">Our Mission</h2>
+              <p className="about-mv-text">
+                To provide reliable, accessible, and unbiased news that empowers
+                readers to stay informed and make better decisions in their daily lives.
+              </p>
+            </div>
+
+            <div className="about-mv-card about-mv-card--vision">
+              <div className="about-mv-icon">🚀</div>
+              <h2 className="about-mv-title">Our Vision</h2>
+              <p className="about-mv-text">
+                To become one of the most trusted and user-friendly digital news platforms
+                by combining quality journalism with innovative technology.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <section className="about-values-section">
+          <div className="about-section-header">
+            <span className="about-intro-badge">What We Stand For</span>
+            <h2 className="about-section-h2">Core Values</h2>
+          </div>
+          <div className="about-values-grid">
+            {CORE_VALUES.map((v, i) => (
+              <div key={v.title} className="about-value-card" style={{ animationDelay: `${i * 0.1}s` }}>
+                <span className="about-value-icon">{v.icon}</span>
+                <h3 className="about-value-title">{v.title}</h3>
+                <p className="about-value-desc">{v.desc}</p>
+              </div>
+            ))}
           </div>
         </section>
 
         <section className="about-stats-section">
           <div className="about-stats">
-            {STATS.map((s) => (
+            {STATS.map(s => (
               <div key={s.label} className="stat-card">
-                <span className="stat-number">{s.number}</span>
+                <span className="about-stat-icon">{s.icon}</span>
+                <span className="stat-number">{s.value}</span>
                 <span className="stat-label">{s.label}</span>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="about-section">
-          <h2 className="section-title">The team</h2>
-          <div className="team-grid">
-            {TEAM.map((member) => (
-              <div key={member.name} className="team-card">
-                <div className="team-avatar" style={{ backgroundColor: member.color }}>
-                  {member.initials}
-                </div>
-                <h3 className="team-name">{member.name}</h3>
-                <span className="team-role">{member.role}</span>
-                <p className="team-bio">{member.bio}</p>
+        <section className="about-founder-section">
+          <div className="about-section-header">
+            <span className="about-intro-badge">The Developer</span>
+            <h2 className="about-section-h2">Meet the Founder</h2>
+          </div>
+          <div className="about-founder-card">
+            <div className="about-founder-avatar">AM</div>
+            <div className="about-founder-info">
+              <h2 className="about-founder-name">Afolabi Abdulmuiz</h2>
+              <span className="about-founder-role">Computer Science Student &amp; Developer</span>
+              <p className="about-founder-bio">
+                This platform was developed as a university React project by Afolabi Abdulmuiz,
+                a Computer Science student passionate about technology, software development, and
+                creating digital solutions that improve access to information. NewsHub represents
+                the intersection of modern web development and a genuine belief that quality
+                news should be accessible to everyone.
+              </p>
+              <div className="about-founder-tags">
+                <span className="about-tag">React Developer</span>
+                <span className="about-tag">Computer Science</span>
+                <span className="about-tag">Open Source</span>
               </div>
-            ))}
+            </div>
           </div>
         </section>
 
       </div>
+
+      <section className="about-cta">
+        <div className="container about-cta-inner">
+          <h2>Ready to stay informed?</h2>
+          <p>Join thousands of readers who trust NewsHub for their daily news.</p>
+          <div className="about-cta-actions">
+            <Link to="/register" className="btn btn-primary">Create Free Account</Link>
+            <Link to="/" className="btn btn-ghost">Browse News</Link>
+          </div>
+        </div>
+      </section>
+
     </main>
   )
 }
