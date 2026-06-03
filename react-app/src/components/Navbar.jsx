@@ -10,6 +10,9 @@ const CATEGORIES = [
   { label: 'Entertainment', path: '/category/entertainment' },
   { label: 'Science',       path: '/category/science' },
   { label: 'Health',        path: '/category/health' },
+  { label: 'Services',      path: '/services' },
+  { label: 'About',         path: '/about' },
+  { label: 'Contact',       path: '/contact' },
 ]
 
 export default function Navbar() {

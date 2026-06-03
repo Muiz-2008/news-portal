@@ -6,6 +6,9 @@ import Home          from './pages/Home'
 import Category      from './pages/Category'
 import ArticleDetail from './pages/ArticleDetail'
 import Search        from './pages/Search'
+import About         from './pages/About'
+import Contact       from './pages/Contact'
+import Services      from './pages/Services'
 import NotFound      from './pages/NotFound'
 
 export default function App() {
@@ -17,6 +20,9 @@ export default function App() {
         <Route path="/category/:name" element={<Category />} />
         <Route path="/article/:id"    element={<ArticleDetail />} />
         <Route path="/search"         element={<Search />} />
+        <Route path="/about"          element={<About />} />
+        <Route path="/contact"        element={<Contact />} />
+        <Route path="/services"       element={<Services />} />
         <Route path="*"               element={<NotFound />} />
       </Routes>
       <Footer />
